@@ -14,12 +14,12 @@ class HandPose extends React.Component {
     this.state = { flag: true };
   }
 
-  drawPoint(ctx, x, y, r, color) {
-    ctx.fillStyle = "white";
-    ctx.fillRect(x,y,5,5,"blue");
+  drawPoint(ctx, x, y) {
+    ctx.fillStyle = "black";
+    ctx.fillRect(x, y, 5, 5);
   }
 
-  async initCamera(width, height, fps) {
+  async initWebCam(width, height, fps) {
     const constraints = {
       audio: false,
       video: {
@@ -53,27 +53,28 @@ class HandPose extends React.Component {
     const resultLayer = document.querySelector("#pose-result");
 
     ctx.clearRect(0, 0, config.video.width, config.video.height);
-    resultLayer.innerText = "";
-    if(this.state.flag){
-        const predictions = await model.estimateHands(video, true);
-    console.log("Start estimation")
-    for (let i = 0; i < predictions.length; i++) {
+    
+    if (this.state.flag) {
+      const predictions = await model.estimateHands(video, true);
+      console.log("estimating/..");
+      resultLayer.innerText = "Ready";
+      for (let i = 0; i < predictions.length; i++) {
         const keypoints = predictions[i].landmarks;
-  
-        // Log hand keypoints.
         for (let i = 0; i < keypoints.length; i++) {
-          const [x, y, z] = keypoints[i];
-          this.drawPoint(ctx, x, y, z, "red");
+          const [x, y] = keypoints[i];
+          this.drawPoint(ctx, x, y);
         }
       }
     }
 
-    setTimeout(() => { this.estimate(); }, 1000 / config.video.fps);
+    setTimeout(() => {
+      this.estimate();
+    }, 1000 / config.video.fps);
   }
 
   componentDidMount() {
     // this.loadModel();
-    this.initCamera(
+    this.initWebCam(
       config.video.width,
       config.video.height,
       config.video.fps
@@ -87,17 +88,23 @@ class HandPose extends React.Component {
     const canvas = document.querySelector("#pose-canvas");
     canvas.width = config.video.width;
     canvas.height = config.video.height;
-    console.log("Canvas initialized");
   }
 
   render() {
     return (
       <div>
-        <div id="video-container">
-          <video id="pose-video"  playsInline></video>
-          <canvas id="pose-canvas" ></canvas>
-          <div id="pose-result" ></div>
+        <div id="hand-pose">
+          <div>
+            <video id="pose-video" playsInline></video>
+          </div>
+          <div>
+            <canvas id="pose-canvas"></canvas>
+          </div>
         </div>
+        <div id="control">
+        <div id="pose-result">Loading/...</div>
+        </div>
+        
       </div>
     );
   }
