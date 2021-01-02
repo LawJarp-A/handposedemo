@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tensorflow-models/handpose": "0.0.6",
+    "@tensorflow/tfjs-backend-cpu": "^2.8.2",
+    "@tensorflow/tfjs-backend-wasm": "^2.8.2",
+    "@tensorflow/tfjs-backend-webgl": "^2.8.2",
+    "@tensorflow/tfjs-converter": "^2.8.2",
+    "@tensorflow/tfjs-core": "^2.8.2",
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
