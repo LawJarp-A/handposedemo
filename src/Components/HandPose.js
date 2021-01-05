@@ -57,7 +57,6 @@ class HandPose extends React.Component {
     if (this.state.flag) {
       const predictions = await model.estimateHands(video, true);
       console.log("estimating/..");
-      resultLayer.innerText = "Ready";
       for (let i = 0; i < predictions.length; i++) {
         const keypoints = predictions[i].landmarks;
         for (let i = 0; i < keypoints.length; i++) {
@@ -65,6 +64,7 @@ class HandPose extends React.Component {
           this.drawPoint(ctx, x, y);
         }
       }
+      resultLayer.innerText = "Ready";
     }
 
     setTimeout(() => {
