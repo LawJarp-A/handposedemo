@@ -65,6 +65,7 @@ class HandPose extends React.Component {
         }
       }
       resultLayer.innerText = "Ready";
+      this.Change();
     }
 
     setTimeout(() => {
@@ -88,6 +89,22 @@ class HandPose extends React.Component {
     const canvas = document.querySelector("#pose-canvas");
     canvas.width = config.video.width;
     canvas.height = config.video.height;
+    this.Change();
+  }
+  Change(){
+    // Color changes depending on the result
+    const result = document.getElementById("pose-result");
+    const control = document.getElementById('control');    
+    if(result.innerHTML==='Loading/...')
+    {
+      control.style.backgroundColor="#ff8000"
+      control.style.borderColor="#ff8000";
+    }
+    else 
+    {
+      control.style.backgroundColor="#00b300";
+      control.style.borderColor="#00b300"
+    }
   }
 
   render() {

@@ -1,8 +1,21 @@
+@font-face {
+  font-family: hackerspace;
+  src: url(../fonts/hackerspace.ttf);
+}
 .header {
-    padding: 20px;
+    padding: 5px;
+    font-family: hackerspace  ;
     text-align: center;
-    background: #30475e;
+    background: rgb(2, 96, 219);
     color: white;
-    font-size: 20px;
+    font-size: 30px;
     margin: 10px;
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+
+@media only screen and (max-width: 600px) {
+  .header{
+    font-size: 20px;
   }
+}
