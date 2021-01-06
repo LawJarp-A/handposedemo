@@ -1,17 +1,19 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #222831;
+    background-color: #e6e6e6;
   }
 
 #pose-result {
     padding: 10px;
+    font-size: 20px;
+    color: white;
 
 }
 
 #control {
-    width: 100%;
     border: solid;
     border-width: 2px;
+    margin: 10px;
     border-color: black;
     text-align: center;
 }
@@ -20,16 +22,35 @@ body {
     transform: scaleX(-1);
     margin: 5px;
     border: solid;
+    border-width: 2px;
+    border-color:  #1a8cff;
   }
 
   #pose-canvas {
       background-color: azure;
+      /* background-color: white; */
       margin: 5px;
       border: solid;
+      border-width: 2px;
+      border-color:  #1a8cff;
   }
 
   #hand-pose {
       display: flex;
       justify-content: center;
       margin: 10px;;
+  }
+
+  @media only screen and (max-width: 600px) {
+    #hand-pose{
+      flex-direction: column;
+    }
+    #pose-canvas{
+      height:250px;
+      width: auto;
+    }
+    #pose-video{
+      height:250px;
+      width: 330px;
+    }
   }

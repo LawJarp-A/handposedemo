@@ -5,7 +5,7 @@ class Header extends React.Component {
   render() {
     return (
       <div className="header">
-        <h1> hackerspace/</h1>
+        <p> &lt;/HackerSpace&gt;</p>
       </div>
     );
   }
