@@ -3,7 +3,7 @@ import "./handpose.css"
 const handpose = require("@tensorflow-models/handpose");
 require("@tensorflow/tfjs-backend-webgl");
 require("@tensorflow/tfjs-backend-cpu");
-
+let model = null;
 const config = {
   video: { width: 640, height: 480, fps: 30 },
 };
@@ -46,12 +46,14 @@ class HandPose extends React.Component {
   }
 
   async estimate() {
-    const model = await handpose.load();
+    const resultLayer = document.querySelector("#pose-result");
     const video = document.querySelector("#pose-video");
     const canvas = document.querySelector("#pose-canvas");
     const ctx = canvas.getContext("2d");
-    const resultLayer = document.querySelector("#pose-result");
-
+    if(!model){
+    model = await handpose.load();
+    }
+    resultLayer.innerText = "Ready";
     ctx.clearRect(0, 0, config.video.width, config.video.height);
     
     if (this.state.flag) {
@@ -64,7 +66,6 @@ class HandPose extends React.Component {
           this.drawPoint(ctx, x, y);
         }
       }
-      resultLayer.innerText = "Ready";
     }
 
     setTimeout(() => {
