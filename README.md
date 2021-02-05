@@ -4,4 +4,4 @@ Demo app.
 
 Using CV to pin point the keypoints on your hand and tracing them.
 
-Check it out ![here!!](!https://hand-detect-demo.herokuapp.com/)
+Check it out [here!!](https://hand-detect-demo.herokuapp.com/)
